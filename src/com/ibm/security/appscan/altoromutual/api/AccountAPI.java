@@ -19,7 +19,7 @@ import javax.ws.rs.PathParam;
 import com.ibm.security.appscan.altoromutual.model.Account;
 import com.ibm.security.appscan.altoromutual.model.Transaction;
 import com.ibm.security.appscan.altoromutual.model.User;
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 import com.ibm.security.appscan.altoromutual.util.OperationsUtil;
 
 
@@ -214,8 +214,8 @@ public class AccountAPI extends AltoroAPI {
         String response = "";
         try {
             response = response + "\"last_10_transactions\" :\n[";
-            Transaction[] transactions = DBUtil
-                    .getTransactions(null, null, new Account[]{DBUtil
+            Transaction[] transactions = DBUtils
+                    .getTransactions(null, null, new Account[]{DBUtils
                             .getAccount(Long.valueOf(accountNo))}, 10);
             for (Transaction transaction : transactions) {
                 double dblAmt = transaction.getAmount();

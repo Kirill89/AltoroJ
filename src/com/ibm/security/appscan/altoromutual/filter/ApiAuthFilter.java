@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 
 public class ApiAuthFilter implements ContainerRequestFilter {
 
@@ -61,7 +61,7 @@ public class ApiAuthFilter implements ContainerRequestFilter {
         String password = new String(Base64.decodeBase64(tokenizer.nextToken()));
 
         try {
-            if (!DBUtil.isValidUser(username, password)) {
+            if (!DBUtils.isValidUser(username, password)) {
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
                         .entity(NOT_LOGGED_IN_ERROR).build());
                 return;

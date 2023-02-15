@@ -22,7 +22,7 @@ public class OperationsUtil {
         try {
             User user = OperationsUtil.getUser(request);
             String userName = user.getUsername();
-            String message = DBUtil.transferFunds(userName, creditActId, debitActId, amount);
+            String message = DBUtils.transferFunds(userName, creditActId, debitActId, amount);
             if (message != null) {
                 message = "ERROR: " + message;
             } else {
@@ -104,7 +104,7 @@ public class OperationsUtil {
         //if transfer amount is zero then there is nothing to do
         if (message == null && amount > 0) {
             //Notice that available balance is not checked
-            message = DBUtil.transferFunds(userName, creditActId, debitActId, amount);
+            message = DBUtils.transferFunds(userName, creditActId, debitActId, amount);
         }
 
         if (message != null) {
@@ -124,7 +124,7 @@ public class OperationsUtil {
             subject = StringEscapeUtils.escapeSql(subject);
             comments = StringEscapeUtils.escapeSql(comments);
 
-            long id = DBUtil.storeFeedback(name, email, subject, comments);
+            long id = DBUtils.storeFeedback(name, email, subject, comments);
             return String.valueOf(id);
         }
 
@@ -139,7 +139,7 @@ public class OperationsUtil {
         String decodedToken = new String(Base64.decodeBase64(accessToken));
         StringTokenizer tokenizer = new StringTokenizer(decodedToken, ":");
         String username = new String(Base64.decodeBase64(tokenizer.nextToken()));
-        return DBUtil.getUserInfo(username);
+        return DBUtils.getUserInfo(username);
 
     }
 

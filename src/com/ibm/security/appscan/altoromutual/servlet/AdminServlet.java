@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 
 /**
  * This servlet handles site admin operations
@@ -46,7 +46,7 @@ public class AdminServlet extends HttpServlet {
             if (username == null || acctType == null || username.trim().length() == 0 || acctType.trim().length() == 0)
                 message = "An error has occurred. Please try again later.";
             else {
-                String error = DBUtil.addAccount(username, acctType);
+                String error = DBUtils.addAccount(username, acctType);
                 if (error != null)
                     message = error;
             }
@@ -77,7 +77,7 @@ public class AdminServlet extends HttpServlet {
             }
 
             if (message == null) {
-                String error = DBUtil.addUser(username, password1, firstname, lastname);
+                String error = DBUtils.addUser(username, password1, firstname, lastname);
 
                 if (error != null)
                     message = error;
@@ -100,7 +100,7 @@ public class AdminServlet extends HttpServlet {
             }
 
             if (message == null) {
-                String error = DBUtil.changePassword(username, password1);
+                String error = DBUtils.changePassword(username, password1);
 
                 if (error != null)
                     message = error;

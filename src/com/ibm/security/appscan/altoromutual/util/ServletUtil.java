@@ -189,7 +189,7 @@ public class ServletUtil {
     /* adds a special type of bank user */
     public static void addSpecialBankUsers(String username, String password,
                                            String firstname, String lastname) {
-        DBUtil.addSpecialUser(username, password, firstname, lastname);
+        DBUtils.addSpecialUser(username, password, firstname, lastname);
     }
 
     /* retrieves demo properties to extend AltoroJ behavior for protected environments */
@@ -214,7 +214,7 @@ public class ServletUtil {
 
     /* returns ALL submitted feedback */
     public static ArrayList<Feedback> getAllFeedback() {
-        ArrayList<Feedback> feedbackList = DBUtil.getFeedback(Feedback.FEEDBACK_ALL);
+        ArrayList<Feedback> feedbackList = DBUtils.getFeedback(Feedback.FEEDBACK_ALL);
         return feedbackList;
     }
 
@@ -225,7 +225,7 @@ public class ServletUtil {
         if (feedbackId <= 0)
             return null;
 
-        ArrayList<Feedback> feedbackList = DBUtil.getFeedback(feedbackId);
+        ArrayList<Feedback> feedbackList = DBUtils.getFeedback(feedbackId);
         return feedbackList.get(0);
     }
 
@@ -233,7 +233,7 @@ public class ServletUtil {
      * Returns all bank usernames
      */
     public static String[] getBankUsers() {
-        return DBUtil.getBankUsernames();
+        return DBUtils.getBankUsernames();
     }
 
     /* Web output sanitizer */
@@ -340,7 +340,7 @@ public class ServletUtil {
 
     public static Cookie establishSession(String username, HttpSession session) {
         try {
-            User user = DBUtil.getUserInfo(username);
+            User user = DBUtils.getUserInfo(username);
             Account[] accounts = user.getAccounts();
             String accountStringList = Account.toBase64List(accounts);
             Cookie accountCookie = new Cookie(ServletUtil.ALTORO_COOKIE, accountStringList);

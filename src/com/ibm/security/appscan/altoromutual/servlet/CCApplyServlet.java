@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ibm.security.appscan.altoromutual.model.User;
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 import com.ibm.security.appscan.altoromutual.util.ServletUtil;
 
 /**
@@ -48,7 +48,7 @@ public class CCApplyServlet extends HttpServlet {
             User user = (User) (request.getSession().getAttribute(ServletUtil.SESSION_ATTR_USER));
 
             //correct password entered
-            if (DBUtil.isValidUser(user.getUsername(), passwd.trim())) {
+            if (DBUtils.isValidUser(user.getUsername(), passwd.trim())) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/bank/applysuccess.jsp");
                 dispatcher.forward(request, response);
             }

@@ -23,7 +23,7 @@ import java.util.StringTokenizer;
 
 import org.apache.commons.codec.binary.Base64;
 
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 
 /**
  * This class models user's account
@@ -50,7 +50,7 @@ public class Account {
     }
 
     public static Account getAccount(long account) throws SQLException {
-        return DBUtil.getAccount(account);
+        return DBUtils.getAccount(account);
     }
 
     public static Account[] fromBase64List(String b64accounts) {

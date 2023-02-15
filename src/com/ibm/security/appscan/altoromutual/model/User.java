@@ -20,7 +20,7 @@ package com.ibm.security.appscan.altoromutual.model;
 import java.sql.SQLException;
 import java.util.Date;
 
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 
 /**
  * This class models a user
@@ -73,7 +73,7 @@ public class User implements java.io.Serializable {
 
     public Account[] getAccounts() {
         try {
-            return DBUtil.getAccounts(username);
+            return DBUtils.getAccounts(username);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -90,7 +90,7 @@ public class User implements java.io.Serializable {
 
     public long getCreditCardNumber() {
         for (Account account : getAccounts()) {
-            if (DBUtil.CREDIT_CARD_ACCOUNT_NAME.equals(account.getAccountName()))
+            if (DBUtils.CREDIT_CARD_ACCOUNT_NAME.equals(account.getAccountName()))
                 return account.getAccountId();
         }
         return -1L;
@@ -99,7 +99,7 @@ public class User implements java.io.Serializable {
     public Transaction[] getUserTransactions(String startDate, String endDate, Account[] accounts) throws SQLException {
 
         Transaction[] transactions = null;
-        transactions = DBUtil.getTransactions(startDate, endDate, accounts, -1);
+        transactions = DBUtils.getTransactions(startDate, endDate, accounts, -1);
         return transactions;
     }
 

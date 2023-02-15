@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.wink.json4j.*;
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 import com.ibm.security.appscan.altoromutual.util.OperationsUtil;
 
 @Path("/login")
@@ -54,7 +54,7 @@ public class LoginAPI {
         myJson.clear();
 
         try {
-            if (!DBUtil.isValidUser(username, password)) {
+            if (!DBUtils.isValidUser(username, password)) {
                 throw new InvalidParameterException(
                         "We're sorry, but this username or password was not found in our system.");
             }

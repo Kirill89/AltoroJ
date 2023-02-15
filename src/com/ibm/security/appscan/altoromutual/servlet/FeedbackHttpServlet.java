@@ -32,7 +32,7 @@ import com.ibm.security.appscan.altoromutual.util.OperationsUtil;
  * Feedback submission servlet
  * @author Alexei
  */
-public class FeedbackServlet extends HttpServlet {
+public class FeedbackHttpServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 

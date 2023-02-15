@@ -42,7 +42,7 @@ import com.ibm.security.appscan.altoromutual.model.User.Role;
  * @author Alexei
  *
  */
-public class DBUtil {
+public class DBUtils {
 
     public static final String CREDIT_CARD_ACCOUNT_NAME = "Credit Card";
     public static final String CHECKING_ACCOUNT_NAME = "Checking";
@@ -50,12 +50,12 @@ public class DBUtil {
     public static final double CASH_ADVANCE_FEE = 2.50;
     private static final String PROTOCOL = "jdbc:derby:";
     private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
-    private static DBUtil instance = null;
+    private static DBUtils instance = null;
     private Connection connection = null;
     private DataSource dataSource = null;
 
     //private constructor
-    private DBUtil() {
+    private DBUtils() {
         /*
          **
          **			Default location for the database is current directory:
@@ -96,7 +96,7 @@ public class DBUtil {
     private static Connection getConnection() throws SQLException {
 
         if (instance == null)
-            instance = new DBUtil();
+            instance = new DBUtils();
 
         if (instance.connection == null || instance.connection.isClosed()) {
 

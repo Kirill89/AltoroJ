@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.ibm.security.appscan.Log4AltoroJ;
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 import com.ibm.security.appscan.altoromutual.util.ServletUtil;
 
 /**
@@ -36,13 +36,13 @@ import com.ibm.security.appscan.altoromutual.util.ServletUtil;
  *
  * @author Alexei
  */
-public class LoginServlet extends HttpServlet {
+public class LoginHttpServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public LoginHttpServlet() {
         super();
     }
 
@@ -79,7 +79,7 @@ public class LoginServlet extends HttpServlet {
             String password = request.getParameter("passw");
             password = password.trim().toLowerCase(); //in real life the password usually is case sensitive and this cast would not be done
 
-            if (!DBUtil.isValidUser(username, password)) {
+            if (!DBUtils.isValidUser(username, password)) {
                 Log4AltoroJ.getInstance().logError("Login failed >>> User: " + username + " >>> Password: " + password);
                 throw new Exception("Login Failed: We're sorry, but this username or password was not found in our system. Please try again.");
             }

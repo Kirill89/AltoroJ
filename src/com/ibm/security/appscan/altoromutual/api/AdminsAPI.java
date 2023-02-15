@@ -11,11 +11,11 @@ import javax.ws.rs.core.Response;
 
 import org.apache.wink.json4j.*;
 
-import com.ibm.security.appscan.altoromutual.util.DBUtil;
+import com.ibm.security.appscan.altoromutual.util.DBUtils;
 import com.ibm.security.appscan.altoromutual.util.ServletUtil;
 
 @Path("/admin")
-public class AdminAPI extends AltoroAPI {
+public class AdminsAPI extends AltoroAPI {
 
     @POST
     @Path("/changePassword")
@@ -53,7 +53,7 @@ public class AdminAPI extends AltoroAPI {
         String error = null;
 
         if (ServletUtil.getAppProperty("enableAdminFunctions").equalsIgnoreCase("true"))
-            error = DBUtil.changePassword(username, password1);
+            error = DBUtils.changePassword(username, password1);
 
         if (error != null)
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("{\"error\":\"" + error + "\"}").build();
@@ -100,7 +100,7 @@ public class AdminAPI extends AltoroAPI {
         String error = null;
 
         if (ServletUtil.getAppProperty("enableAdminFunctions").equalsIgnoreCase("true"))
-            error = DBUtil.addUser(username, password1, firstname, lastname);
+            error = DBUtils.addUser(username, password1, firstname, lastname);
 
         if (error != null)
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("{\"error\":\"" + error + "\"}").build();
