@@ -29,7 +29,6 @@ import javax.servlet.http.HttpSession;
 import com.ibm.security.appscan.Log4AltoroJ;
 import com.ibm.security.appscan.altoromutual.util.DBUtil;
 import com.ibm.security.appscan.altoromutual.util.ServletUtil;
-
 /**
  * This servlet processes user's login and logout operations
  * Servlet implementation class LoginServlet
@@ -58,9 +57,7 @@ public class LoginServlet extends HttpServlet {
 		} finally {
 			response.sendRedirect("index.jsp");
 		}
-		
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -70,12 +67,12 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 
 		String username = null;
-		
+
 		try {
 			username = request.getParameter("uid");
 			if (username != null)
 				username = username.trim().toLowerCase();
-			
+
 			String password = request.getParameter("passw");
 			password = password.trim().toLowerCase(); //in real life the password usually is case sensitive and this cast would not be done
 			
